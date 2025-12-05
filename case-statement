@@ -1,0 +1,116 @@
+#!/bin/bash
+
+# Case Statement (Like Switch)
+
+read -p "Enter your choice (start/stop/status);" action
+
+case $action in 
+	start)
+		echo "server started" ;;
+
+	stop) 
+		echo "server stoped" ;;
+		
+	status)
+		echo "service status" ;;
+
+	*)
+		echo "invalide option" ;;
+
+esac
+
+
+# 2. REAL-TIME DEVOPS SCRIPT — Manage Service (Nginx Example) 
+
+
+echo "Choose an action: start | stop | restart | status"
+read action
+
+case $action in
+    start)
+        sudo systemctl start nginx
+        echo "Nginx started"
+        ;;
+    stop)
+        sudo systemctl stop nginx
+        echo "Nginx stopped"
+        ;;
+    restart)
+        sudo systemctl restart nginx
+        echo "Nginx restarted"
+        ;;
+    status)
+        sudo systemctl status nginx
+        ;;
+    *)
+        echo "Invalid option"
+        ;;
+esac
+
+
+# Case Script for BACKUP
+<< Backup 
+methode-1
+echo "choice backup type: full | incremental"
+
+
+read type
+
+case $type in
+	full)
+		sudo mkdir -p /home/ubuntu/backup/
+
+		tar czf /backup/full-$(date +%F).tar.gz /var/www/html
+
+		echo "full backup successfull" ;;
+
+	incremental)
+
+ 
+		rsync -av /var/www/html /backup/incremental/
+
+		echo "Incremental backup completed" ;;
+
+	*)
+		echo "Invalide " ;;
+
+esac
+
+Backup
+
+# backup mrthode-2
+BACKUP_DIR="/home/ubuntu/Bash-scripting/backup"
+SOURCE_DIR="/var/www/html"
+
+# Create backup directory
+mkdir -p "$BACKUP_DIR"
+
+echo "Choose backup type: full | incremental"
+read type
+
+case $type in
+    full)
+        BACKUP_FILE="$BACKUP_DIR/full-$(date +%F).tar.gz"
+
+        if tar -czf "$BACKUP_FILE" "$SOURCE_DIR"; then
+            echo "✔ Full backup successful → $BACKUP_FILE"
+        else
+            echo "❌ Full backup failed!"
+        fi
+        ;;
+
+    incremental)
+        mkdir -p "$BACKUP_DIR/incremental"
+
+        if rsync -av "$SOURCE_DIR" "$BACKUP_DIR/incremental/"; then
+            echo "✔ Incremental backup completed"
+        else
+            echo "❌ Incremental backup failed!"
+        fi
+        ;;
+
+    *)
+        echo "Invalid Option"
+        ;;
+esac
+

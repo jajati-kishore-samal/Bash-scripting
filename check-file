@@ -42,3 +42,9 @@ else
 	echo "its failed"
 fi
 
+# ⭐ 10. String Comparison
+if [ "$env" == "prod" ]; then
+    echo "Production Deployment"
+fi
+
+
