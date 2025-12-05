@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#check service running or not
+
+if systemctl is-active docker; then
+
+echo "Docker Running"
+
+else 
+
+echo "Docker  not running"
+
+fi
+
+
+# file Checks
+
+if sudo apt-get install apache2 -y  && systemctl status apache2 ; then
+
+	echo "apache install successfull"
+
+elif sudo systemctl restart apache2 ; then
+	echo "restart sucessfull"
+
+else 
+	echo "failed"
+
+fi
+
+# file exists or not --> -f (file exists) , -d (directory exists) , -e (file pr directory exists)
+
+
+if [ -f file.txt ]; then
+
+	echo "file exists"
+
+elif touch  file.txt ; then
+
+	echo "file created"
+
+else
+	echo "its failed"
+fi
+

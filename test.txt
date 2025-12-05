@@ -1,0 +1,69 @@
+#!/bin/bash
+
+echo "Hello World"
+
+# variable
+#
+
+name="Jajati"
+
+echo $name
+
+# store version
+#
+
+version="1.0.3"
+
+echo "Deploying version $version"
+
+# user input
+
+echo "Enter name"
+
+read name
+
+echo "Hello $name"
+
+<< comment
+6. Environment Variables
+
+export APP_ENV=production
+echo $APP_ENV
+
+
+Used in Jenkins pipelines, Dockerfiles, Kubernetes manifests.
+
+comment
+
+#Arithmetic
+
+a=10
+
+b=20
+
+echo $((a+b))
+
+#8. IF-ELSE Conditions
+ age=20
+
+ if ((age >= 18)); then
+	
+
+	echo "Adult"
+
+else
+	echo "Minor"
+
+fi
+
+# second Ex
+
+n=8
+
+if ((n==2)); then
+	echo "even"
+
+else
+	echo "odd"
+
+fi
